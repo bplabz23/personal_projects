@@ -157,7 +157,7 @@ public class TuringMachine
         // 1. Print the tape
         for (int i = 0; i < tape.length(); i++)
         {
-            System.out.print( tape.charAt(this.rwHead) );
+            System.out.print( tape.charAt(i) );
             System.out.print(' ');
         }
 
@@ -168,7 +168,12 @@ public class TuringMachine
         {
             if ( i == rwHead)
             {
-                System.out.print( tape.charAt(this.rwHead) );
+                System.out.print('^');
+            }
+
+            else
+            {
+                System.out.print(' ');
             }
             
             System.out.print(' ');
@@ -180,7 +185,7 @@ public class TuringMachine
         System.out.print("State: ");
         System.out.println(this.state);
 
-        System.out.println("\n");
+        System.out.println("\n\n");
     }
 
 

@@ -26,7 +26,7 @@ public class TransitionFunctionBuilder
         function.put(input, t);
     }
 
-    public void justMoveUntil(String state, char symbol, char direction)        
+    public void justMoveUntil(char symbol, String state, char direction)        
     {
         // Prints all the rules for the following situation:
         // "For given state, don't make changes, just keep moving in specified direction until we see specified character"
@@ -58,10 +58,47 @@ public class TransitionFunctionBuilder
 
     }
 
+    public void forAllExcept(char symbol, String state, char replacement, char direction)        
+    {
+        // Prints all the rules for the following situation:
+        // "For all symbols except the one provided, replace it with the one given and move in given direction"
+        
+        // Create buffers for our input and image
+        String input;
+        TransitionImage t;
+
+        // For every character != symbol
+        for(char i = 0; i < 128; i++)
+        {
+            if (i != symbol)
+            {
+                // Build the transition function input
+                input = "(";
+                input += state;
+                input += ", ";
+                input += Character.toString(i);
+                input += ")";
+                
+                // Build the image of the input
+                t = new TransitionImage(state, replacement, direction);
+
+                // Create a mapping of these two elements in the hashMap
+                this.function.put(input, t);
+            }
+
+        }
+
+    }
+
     public void printFunction()
     {
         System.out.println( this.function.toString() );
     }
 
+
+    public HashMap<String, TransitionImage> getFunction()
+    {
+        return this.function;
+    }
 
 }
