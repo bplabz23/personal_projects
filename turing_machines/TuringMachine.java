@@ -74,7 +74,7 @@ public class TuringMachine
     // Methods - text processing
 
 
-    public bool processSymbol()
+    public boolean processSymbol()
     {
         // 1. Check if there is anymore tape to be analyzed. If not, exit and return false 
         if ( this.rwHead >= tape.length() || this.rwHead < 0 )
@@ -97,7 +97,7 @@ public class TuringMachine
         TransitionImage transition = transitionFunction.get(input);
 
         // 5. Before we update our Turing machine as described the transition image, check IF WE EVEN GOT ONE
-        if (transition = null)
+        if (transition == null)
         {
             // If not, exit and return false
             return false;
@@ -109,7 +109,7 @@ public class TuringMachine
         // 6.b Change the tape symbol our head is pointing at
         char[] tapeChars = tape.toCharArray();                          // Convert our tape to a char[]
         tapeChars[rwHead] = transition.getSymbol();                     // Write the new tape symbol where the head is pointing
-        this.changeTape( String(tapeChars) );                           // Update this change to the machine's tape
+        this.changeTape( new String(tapeChars) );                           // Update this change to the machine's tape
     
         // 6.c Move the r/w head, as specified by transition
         char direction = transition.getDirection();
@@ -152,7 +152,7 @@ public class TuringMachine
 
     // Methods - machine output
 
-    public String printMachine()
+    public void printMachine()
     {
         // 1. Print the tape
         for (int i = 0; i < tape.length(); i++)
@@ -174,7 +174,7 @@ public class TuringMachine
             System.out.print(' ');
         }
     
-        system.out.print("\n");
+        System.out.print("\n");
 
         // 3. Print state
         System.out.print("State: ");
