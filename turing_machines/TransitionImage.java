@@ -12,6 +12,13 @@ public class TransitionImage
 
     // Methods
 
+    public TransitionImage(String state, char tapeSymbol, char direction)
+    {
+        this.state = state;
+        this.tapeSymbol = tapeSymbol;
+        this.direction = direction;
+    }
+
     public String getState() 
     {
         return state;
@@ -26,4 +33,8 @@ public class TransitionImage
     {
         return this.direction;
     }
+
+
+
+
 }
