@@ -3,24 +3,64 @@
 
 
 
-; eat word -> return final state
+
+; *******************************************************************************
+;   Name:             eat-word
+;
+;   Parameters:
+;               1) word         -     list 
+;               2) start state  -     function
+;
+;   Return:     state
+;
+;   Description:
+;                   Processes an entire word and returns the halting state.
+;   
+;   Notes:    This is the main algorithm a DFA follows when it processes a word.
+;               Uses recursion.
+; ******************************************************************************* 
+
 (define eat-word
   (lambda (word state)
-    (if (null? word)
-        state
-        (eat-word (cdr word) (transition-function state (car word))))))
+      (if (null? word)                                                                  ; IF the word is empty
+        state                                                                           ; THEN return the current state the DFA is in
+        (eat-word (cdr word) (transition-function state (car word))))))                 ; OTHERWISE shorten the word, change to next state, and repeat on updated values (recursion) 
   
     
   
   
  
 
+; *******************************************************************************
+;   Name:             transition-function
+;
+;   Parameters:
+;                   1) state   -  function 
+;                   2) letter  -  char from list
+;
+;   Return:         state
+;
+;   Description:
+;                   Accepts a state and a letter; returns the next state.
+;
+;   Notes:
+;                   This is a helper function of eat-word. It does not actually
+;           know the transition table of a DFA, but it dynamically calls the current
+;           state passed to it             
+;
+; ******************************************************************************* 
 
-
-; transition function
 (define (transition-function state letter)       ; transition-function(state, letter)
   (state letter)                                 ; States are also functions
   )
+
+
+
+
+
+
+; Each state is a container that holds its own transitions.
+
 
 
 ; state q-zero function  -> returns new state
